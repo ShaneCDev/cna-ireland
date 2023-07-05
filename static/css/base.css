@@ -1,7 +1,7 @@
 :root {
-    --main-color: black;
-    --secondary-color: white;
-    --tertiary-color: green;
+    --main-color: #1a1a1a;
+    --secondary-color: #fff;
+    --tertiary-color: #40ff29;
 }
 
 html {
@@ -10,13 +10,26 @@ html {
 
 body {
     height: calc(100vh - 164px);
-    color: #555;
+    color: var(--secondary-color);
     font-family: 'Lato';
 }
 
 .background-image {
     background: url('/media/homepage.webp') no-repeat center fixed;
     background-size: cover;
+}
+
+.primary-color {
+    background: var(--main-color);
+}
+
+.logo {
+    background: url('/media/stackedcolor_50.png') no-repeat center fixed;
+    height: 75%;
+}
+
+.tertiary-color {
+    color: var(--tertiary-color);
 }
 
 .icon {
@@ -94,6 +107,13 @@ a {
 }
 
 /* ------- Media Queries */
+@media (max-width: 500px) {
+    .btt-button {
+        right: 1px;
+    }
+}
+
+
 @media (min-width: 992px) {
     .container {
         max-width: 80%;
