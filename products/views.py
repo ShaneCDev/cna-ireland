@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.contrib.auth.decorators import login_required
 from .models import Category, Product
+from .forms import ProductForm
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib import messages
@@ -64,3 +66,72 @@ def product_detail(request, slug):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def add_product(request):
+    """add a product"""
+    if not request.user.is_superuser:
+        # add messages
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            # add messages
+            return redirect(reverse('product_detail'), args=[product.slug])
+        else:
+            # add messages
+            print('add messages')
+    else:
+        form = ProductForm()
+    
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_product(request, slug, product_id):
+    """Edit products"""
+    if not request.user.is_superuser:
+        # add messages later
+        return redirect(reverse('home'))
+    
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            # add messages later
+            return redirect(reverse('product_detail', args=[slug]))
+        else:
+            print('add messages later')
+    else:
+        form = ProductForm(instance=product)
+        # add messages later
+    
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_product(request, product_id):
+    """delete products from the store"""
+    if not request.user.is_superuser:
+        # add messages
+        return redirect(reverse('home'))
+    
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    # add messages
+    return redirect(reverse('products'))
