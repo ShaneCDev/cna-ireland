@@ -38,7 +38,7 @@ def all_products(request):
             query = request.GET['q']
             if not query:
                 # add message
-                return redirct(reverse('products'))
+                return redirect(reverse('products'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
@@ -53,3 +53,14 @@ def all_products(request):
     }
 
     return render(request, 'products/products.html', context)
+
+
+def product_detail(request, slug):
+    """Detailed view of the product"""
+    product = get_object_or_404(Product, slug=slug)
+
+    context = {
+        'product': product,
+    }
+
+    return render(request, 'products/product_detail.html', context)
