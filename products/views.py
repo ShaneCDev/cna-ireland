@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 from .models import Category, Product
 from .forms import ProductForm
 from django.db.models import Q
@@ -17,7 +18,7 @@ def all_products(request):
     direction = None
 
     if request.GET:
-        if 'sort' in  request.GET:
+        if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
             if sortkey == 'name':
@@ -35,7 +36,7 @@ def all_products(request):
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
-        
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -44,7 +45,7 @@ def all_products(request):
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
-    
+
     current_sorting = f'{sort}_{direction}'
 
     context = {
@@ -78,15 +79,17 @@ def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()
+            product = form.save(commit=False)
+            product.slug = slugify(product.name)
+            product.save()
             # add messages
-            return redirect(reverse('product_detail'), args=[product.slug])
+            return redirect(reverse('product_detail', kwargs={'slug': product.slug}))
         else:
             # add messages
             print('add messages')
     else:
         form = ProductForm()
-    
+
     template = 'products/add_product.html'
     context = {
         'form': form,

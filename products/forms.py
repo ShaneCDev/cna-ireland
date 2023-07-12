@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.text import slugify
 from .models import Product, Category
 from .widgets import CustomClearableFileInput
 
@@ -7,12 +8,17 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = '__all__'
-    
-    
+        fields = ['category', 'name', 'description', 'price', 'image']
+
     image = forms.ImageField(label='image', required=False, widget=CustomClearableFileInput)
 
-    
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        slug = slugify(name)
+        cleaned_data['slug'] = slug
+        return cleaned_data
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
