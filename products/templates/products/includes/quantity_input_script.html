@@ -3,62 +3,116 @@
     /*
     * Disable the plus and minus buttons outside the range of 1-99
     */
+    // function handleEnableDisable(itemId) {
+    //     console.log(itemId);
+    //     currentValue = parseInt(document.getElementById(`.id_qty_${itemId}`).value);
+
+    //     console.log(currentValue);
+
+    //     var minusDisabled = currentValue < 2;
+    //     var plusDisabled = currentValue > 98;
+
+    //     if (minusDisabled || plusDisabled) {
+    //         document.getElementById(`.decrement-qty_${itemId}`).disabled = minusDisabled;
+    //         document.getElementById(`.decrement-qty_${itemId}`).disabled = plusDisabled;
+    //     }
+
+    //     // ensure proper enabling/disabling of all inputs on page load
+    //     var allQtyInputs = document.querySelectorAll('.qty_input');
+    //     for (var i = 0; i < allQtyInputs.length; i++) {
+    //         var itemId = allQtyInputs[i].dataset.item_id;
+    //         handleEnableDisable(itemId);
+    //     }
+    // }
+
+    // // check enable/disable everytime the input is changed
+    // var qtyInputs = document.querySelectorAll('.qty_input');
+    // qtyInputs.forEach(function(input) {
+    //     input.addEventListener('change', function() {
+    //         var itemId = this.dataset.item_id;
+    //         handleEnableDisable(itemId);
+    //     });
+    // });
+
+    // // increment qty
+    // var incrementButtons = document.querySelectorAll('.increment-qty');
+    // incrementButtons.forEach(function (button) {
+    //     button.addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //         var itemId = this.dataset.item_id;
+    //         var closestInput = this.closest('.input-group').querySelector('.qty_input');
+    //         var allQuantityInputs = document.querySelectorAll(`.input-group-${itemId} input[name='quantity']`);
+    //         var currentValue = parseInt(closestInput.value);
+    //         allQuantityInputs.forEach(function(input) {
+    //             input.value = currentValue + 1;
+    //         });
+    //         handleEnableDisable(itemId);
+    //     });
+    // });
+
+    // // decrement qty
+    // var decrementButtons = document.querySelectorAll('.decrement-qty');
+    // decrementButtons.forEach(function (button) {
+    //     button.addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //         var itemId = this.dataset.item_id;
+    //         var closestInput = this.closest('.input-group').querySelector('.qty_input');
+    //         var allQuantityInputs = document.querySelectorAll(`.input-group-${itemId} input[name='quantity']`);
+    //         var currentValue = parseInt(closestInput.value);
+    //         allQuantityInputs.forEach(function (input) {
+    //             input.value = currentValue - 1;
+    //         });
+    //     });
+    // });
+    
     function handleEnableDisable(itemId) {
-        currentValue = parseInt(document.querySelector(`.id_qty_${itemId}`).value);
+        var currVal = parseInt(document.getElementById(`id_qty_${itemId}`).value);
 
-        var minusDisabled = currentValue < 2;
-        var plusDisabled = currentValue > 98;
+        var minusDisabled = currVal < 2;
+        var plusDisabled = currVal > 98;
 
-        if (minusDisabled || plusDisabled) {
-            document.querySelector(`.decrement-qty_${itemId}`).disabled = minusDisabled;
-            document.querySelector(`.decrement-qty_${itemId}`).disabled = plusDisabled;
-        }
-
-        // ensure proper enabling/disabling of all inputs on page load
-        var allQtyInputs = document.querySelectorAll('.qty_input');
-        for (var i = 0; i < allQtyInputs.length; i++) {
-            var itemId = allQtyInputs[i].dataset.item_id;
-            handleEnableDisable(itemId);
-        }
+        document.getElementById(`decrement-qty_${itemId}`).disabled = minusDisabled;
+        document.getElementById(`increment-qty_${itemId}`).disabled = plusDisabled;
     }
 
-    // check enable/disable everytime the input is changed
-    var qtyInputs = document.querySelectorAll('.qty_input');
-    qtyInputs.forEach(function(input) {
-        input.addEventListener('change', function() {
-            var itemId = this.dataset.item_id;
+    document.addEventListener("DOMContentLoaded", function() {
+        var allQtyInputs = document.querySelectorAll(".qty_input");
+        for (var i = 0; i < allQtyInputs.length; i++) {
+            var itemId = allQtyInputs[i].dataset.itemId;
             handleEnableDisable(itemId);
-        });
-    });
+        }
 
-    // increment qty
-    var incrementButtons = document.querySelectorAll('.increment-qty');
-    incrementButtons.forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            var itemId = this.dataset.item_id;
-            var closestInput = this.closest('.input-group').querySelector('.qty_input');
-            var allQuantityInputs = document.querySelectorAll(`.input-group-${itemId} input[name='quantity']`);
-            var currentValue = parseInt(closestInput.value);
-            allQuantityInputs.forEach(function(input) {
-                input.value = currentValue + 1;
-            });
-            handleEnableDisable(itemId);
-        });
-    });
-
-    // decrement qty
-    var decrementButtons = document.querySelectorAll('.decrement-qty');
-    decrementButtons.forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            var itemId = this.dataset.item_id;
-            var closestInput = this.closest('.input-group').querySelector('.qty_input');
-            var allQuantityInputs = document.querySelectorAll(`.input-group-${itemId} input[name='quantity']`);
-            var currentValue = parseInt(closestInput.value);
-            allQuantityInputs.forEach(function (input) {
-                input.value = currentValue - 1;
+        allQtyInputs.forEach(function(qtyInput) {
+            qtyInput.addEventListener("change", function() {
+                var itemId = qtyInput.dataset.itemId;
+                handleEnableDisable(itemId);
             });
         });
+
+        // Increment quantity
+  var incrementButtons = document.querySelectorAll(".increment-qty");
+  incrementButtons.forEach(function(incrementButton) {
+    incrementButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      var itemId = incrementButton.dataset.itemId;
+      var closestInput = incrementButton.closest(".input-group").querySelector(".qty_input");
+      var currentValue = parseInt(closestInput.value);
+      closestInput.value = currentValue + 1;
+      handleEnableDisable(itemId);
     });
+  });
+
+  // Decrement quantity
+  var decrementButtons = document.querySelectorAll(".decrement-qty");
+  decrementButtons.forEach(function(decrementButton) {
+    decrementButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      var itemId = decrementButton.dataset.itemId;
+      var closestInput = decrementButton.closest(".input-group").querySelector(".qty_input");
+      var currentValue = parseInt(closestInput.value);
+      closestInput.value = currentValue - 1;
+      handleEnableDisable(itemId);
+    });
+  });
+});
 </script>
