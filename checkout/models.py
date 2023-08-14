@@ -32,7 +32,7 @@ class Order(models.Model):
         Generate order number using UUID
         """
         return uuid.uuid4().hex.upper()
-    
+
 
     def update_total(self):
         """
