@@ -46,7 +46,7 @@ form.addEventListener('submit', function(ev) {
     document.getElementById('loading-overlay').style.display = 'block';
 
     var saveInfo = document.getElementById('id-save-info').checked;
-    var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken]').value;
+    var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,

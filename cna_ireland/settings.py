@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'profiles',
+    'checkout',
 
     'crispy_forms',
     'crispy_bootstrap5',
@@ -115,23 +116,23 @@ LOGIN_REDIRECT_URL = '/'
 WSGI_APPLICATION = 'cna_ireland.wsgi.application'
 
 # Logging
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'logs/django.log',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'logs/django.log',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#         },
+#     },
+# }
 
 
 # Database
@@ -188,7 +189,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Stripe
 STANDARD_DELIVERY_PERCENTAGE = 10
-STRIPE_CURRENCY = 'eu'
+STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
