@@ -14,8 +14,6 @@ from .forms import OrderForm
 from .models import Order, OrderLineItem
 
 
-
-
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -30,6 +28,7 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
                        processed right now. Please try again later.')
+        print("Error:", e)
         return HttpResponse(content=e, status=400)
 
 
