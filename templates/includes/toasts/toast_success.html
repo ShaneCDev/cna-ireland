@@ -34,8 +34,8 @@
             <div class="row">
                 <div class="col">
                     <strong><p class="my-3 mb-1 text-white">
-                        Total:
-                        <span class="float-right">€{{ total|floatformat:2 }}</span>
+                        Total (Exc. delivery):
+                        <span class="float-end">€{{ total|floatformat:2 }}</span>
                     </p></strong>
                     <a href="{% url 'view_bag' %}" class="btn btn-light btn-block rounded-0 w-100">
                         <span class="text-uppercase">Go To Secure Checkout</span>
