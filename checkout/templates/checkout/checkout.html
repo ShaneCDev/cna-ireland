@@ -49,7 +49,7 @@
                             </a>
                         </div>
                         <div class="col-7">
-                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                            <p class="my-0 text-dark"><strong>{{ item.product.name }}</strong></p>
                             <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                         </div>
                         <div class="col-3 text-end">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6">
-                <p>Please fill out the form below to complete your order</p>
+                <p class="text-dark">Please fill out the form below to complete your order</p>
                 <form action="{% url 'checkout' %}" method="post" id="payment-form">
                     {% csrf_token %}
                     <fieldset class="rounded px-3 mb-5">
