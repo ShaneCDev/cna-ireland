@@ -30,7 +30,13 @@
     <div class="dropdown-menu border-0 primary-color bg-white" aria-labelledby="user-options">
         {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
-                <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-item" id="product-management-dropdown">Product Management &rsaquo;</a>
+                <ul class="dropdown-menu sub-menu" id="product-management-submenu">
+                    <li><a href="#" class="dropdown-item">Add A Category</a></li>
+                    <li><a href="#" class="dropdown-item">Add A Product</a></li>
+                </ul>
+            </div>
             {% endif %}
             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -54,3 +60,20 @@
         </div>
     </a>
 </li>
+
+<!-- <script type="text/javascript">
+    var submenu = document.getElementById('product-management-submenu');
+    var dropdown = document.getElementById('product-management-dropdown');
+
+    // toggle submenu when clicking "Product Management"
+    dropdown.addEventListener('click', function(event) {
+        event.preventDefault();
+        submenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target !== submenu && evnet.target !== dropdown) {
+            submenu.classList.remove('show');
+        }
+    });
+</script> -->

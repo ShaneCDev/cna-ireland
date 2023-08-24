@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from .models import Category, Product
-from .forms import ProductForm
+from .forms import ProductForm, CategoryForm
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib import messages
@@ -26,7 +26,7 @@ def all_products(request):
                 products = products.annotate(lower_name=Lower('name'))
             if sortkey == 'category':
                 sortkey = 'category__name'
-            if 'direction' in  request.GET:
+            if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
@@ -94,6 +94,32 @@ def add_product(request):
         'form': form,
     }
 
+    return render(request, template, context)
+
+
+@login_required
+def add_category(request):
+    """Add categories"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.save()
+            messages.success(request, 'Category added successfully!')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request, 'Failed to add Category, please ensure the form is valid.')
+    else:
+        form = CategoryForm()
+
+    template = 'products/add_category.html'
+    context = {
+        'form': form,
+    }
     return render(request, template, context)
 
 
