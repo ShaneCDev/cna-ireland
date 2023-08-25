@@ -46,7 +46,7 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    document.getElementsById('new-image').addEventListener('change', function () {
+    document.getElementById('new-image').addEventListener('change', function () {
         var file = document.getElementById('new-image').files[0];
         document.getElementById('filename').textContent = `Image will be set to: ${file.name}`;
     });
