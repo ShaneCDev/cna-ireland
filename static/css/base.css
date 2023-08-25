@@ -14,10 +14,10 @@ body {
     font-family: 'Lato';
 }
 
-.background-image {
+/* .background-image {
     background: url('/media/homepage.webp') no-repeat center fixed;
     background-size: cover;
-}
+} */
 
 .primary-color {
     background: var(--main-color);
@@ -93,6 +93,18 @@ a {
     0 1px 0 #000,
     -1px 1px 0 #000,
     -1px 0 0 #000;
+}
+
+/* #product-management-toggle:checked + #product-management-submenu {
+    display: block;
+} */
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+    pointer-events: none;
 }
 
 /* ----------- bootstrap toasts */

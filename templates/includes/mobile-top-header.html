@@ -1,5 +1,6 @@
 <li class="list-inline-item">
-    <a href="#" class="text-white nav-link d-block d-lg-none" id="mobile-search" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a href="#" class="text-white nav-link d-block d-lg-none" id="mobile-search" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div><i class="fas fa-search fa-lg"></i></div>
             <p class="my-0">Search</p>
@@ -8,7 +9,8 @@
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0 primary-color" aria-labelledby="mobile-search">
         <form action="GET" class="form" action="#">
             <div class="input-group w-100">
-                <input type="text" class="form-control border border-light rounded-0" name="q" placeholder="Search our site">
+                <input type="text" class="form-control border border-light rounded-0" name="q"
+                    placeholder="Search our site">
                 <div class="input-group-append">
                     <button class="form-control form-control btn btn-dark border border-light rounded-0" type="submit">
                         <span class="icon">
@@ -21,23 +23,28 @@
     </div>
 </li>
 <li class="list-inline-item dropdown justify-content-end">
-    <a href="" class="text-white nav-link d-block d-lg-none" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a href="" class="text-white nav-link d-block d-lg-none" id="user-options" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div><i class="fas fa-user fa-lg"></i></div>
             <p class="my-0">My Account</p>
         </div>
     </a>
+
+
     <div class="dropdown-menu border-0 primary-color bg-white" aria-labelledby="user-options">
-        {% if request.user.is_authenticated %}
-            {% if request.user.is_superuser %}
-            <div class="dropdown">
-                <a href="#" class="dropdown-item" id="product-management-dropdown">Product Management &rsaquo;</a>
-                <ul class="dropdown-menu sub-menu" id="product-management-submenu">
-                    <li><a href="#" class="dropdown-item">Add A Category</a></li>
-                    <li><a href="#" class="dropdown-item">Add A Product</a></li>
-                </ul>
-            </div>
-            {% endif %}
+        {% if request.user.is_superuser %}
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Product Management
+            </button>
+            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                <li><a href="{% url 'add_category' %}" class="dropdown-item">Add A Category</a></li>
+                <li><a href="{% url 'add_product' %}" class="dropdown-item">Add A Product</a></li>
+            </ul>
+        </div>
+        {% elif request.user.is_authenticated %}
             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
         {% else %}
@@ -45,16 +52,42 @@
             <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
         {% endif %}
     </div>
+    
+
+    
+
+    <!-- <div class="dropdown-menu border-0 primary-color bg-white" aria-labelledby="user-options">
+        {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Product Management
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a href="{% url 'add_category' %}" class="dropdown-item">Add A Category</a></li>
+                <li><a href="{% url 'add_product' %}" class="dropdown-item">Add A Product</a></li>
+            </ul>
+        </div>
+        {% endif %}
+        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+        {% else %}
+        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+        {% endif %}
+    </div> -->
 </li>
 <li class="list-inline-item">
-    <a href="{% url 'view_bag' %}" class="{% if grand_total %}text-primary font-weight-bold{% else %} text-white {% endif %} nav-link d-block d-lg-none">
+    <a href="{% url 'view_bag' %}"
+        class="{% if grand_total %}text-primary font-weight-bold{% else %} text-white {% endif %} nav-link d-block d-lg-none">
         <div class="text-center">
             <div><i class="fas fa-shopping-bag fa-lg"></i></div>
             <p class="my-0">
                 {% if grand_total %}
-                    €{{ grand_total|floatformat:2 }}
+                €{{ grand_total|floatformat:2 }}
                 {% else %}
-                    €0.00
+                €0.00
                 {% endif %}
             </p>
         </div>
@@ -64,15 +97,19 @@
 <!-- <script type="text/javascript">
     var submenu = document.getElementById('product-management-submenu');
     var dropdown = document.getElementById('product-management-dropdown');
+    var isOpen = false;
 
     // toggle submenu when clicking "Product Management"
     dropdown.addEventListener('click', function(event) {
+        console.log('clicked Product Management:', event);
         event.preventDefault();
-        submenu.classList.toggle('show');
+        isOpen = !isOpen;
+        submenu.classList.toggle('show', isOpen);
     });
 
-    document.addEventListener('click', function (event) {
-        if (event.target !== submenu && evnet.target !== dropdown) {
+    document.addEventListener('click', function(event) {
+        if (!submenu.contains(event.target) && event.target !== dropdown) {
+            isOpen = false;
             submenu.classList.remove('show');
         }
     });
