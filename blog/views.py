@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Blog
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def all_blogs(request):
@@ -20,3 +22,16 @@ def blog_detail(request, slug):
     }
     template = 'blog/blog_detail.html'
     return render(request, template, context)
+
+
+@login_required
+def delete_blog(request, slug):
+    """delete a blog"""
+    if not request.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that.')
+        return redirect(reverse('home'))
+
+    blog = get_object_or_404(Blog, slug=slug)
+    blog.delete()
+    messages.success(request, 'Blog post deleted.')
+    return redirect(reverse('blogs'))
