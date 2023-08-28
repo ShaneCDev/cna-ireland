@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% for blog in blogs %}
+        <div class="row justify-content-center mx-auto">
+            <div class="col-8">
+                <div class="card mb-3">
+                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">{{ blog.title }}</h5>
+                        <p class="card-text text-dark">By: {{ blog.author }}</p>
+                        <p class="card-text"><small class="text-muted">Posted on: {{ blog.blog_date }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
