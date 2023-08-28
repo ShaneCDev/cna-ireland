@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col card mb-4 mt-3">
+                <div class="card-body">
+                    <div class="card-title text-dark text-center">
+                        <h2>{{ blog.title }}</h2>
+                    </div>
+                    <div class="card-subtitle mb-2 text-muted text-center">By: {{ blog.author }}</div>
+                    <p class="card-text text-dark text-center text-break fw-normal lh-1">{{ blog.comment }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
