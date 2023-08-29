@@ -7,8 +7,13 @@ from django.template.defaultfilters import linebreaksbr
 
 def all_blogs(request):
     blogs = Blog.objects.all()
+
+    sorted_blogs = blogs.order_by('-blog_date')
+
+    print(sorted_blogs)
+
     context = {
-        'blogs': blogs,
+        'blogs': sorted_blogs,
     }
     template = 'blog/blogs.html'
 
@@ -32,11 +37,14 @@ def blog_detail(request, slug):
 @login_required
 def delete_blog(request, slug):
     """delete a blog"""
-    if not request.is_superuser:
+    if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that.')
         return redirect(reverse('home'))
 
     blog = get_object_or_404(Blog, slug=slug)
     blog.delete()
+
+    # show_grand_total = False
+
     messages.success(request, 'Blog post deleted.')
     return redirect(reverse('blogs'))
