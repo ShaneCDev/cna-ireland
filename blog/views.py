@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Blog
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import linebreaksbr
 
 
 def all_blogs(request):
@@ -16,9 +17,13 @@ def all_blogs(request):
 
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
+    content_paragraphs = linebreaksbr(blog.content).split('<br>')
+
+    content_paragraphs = [p.strip() for p in content_paragraphs if p.strip()]
 
     context = {
         'blog': blog,
+        'content_paragraphs': content_paragraphs,
     }
     template = 'blog/blog_detail.html'
     return render(request, template, context)
