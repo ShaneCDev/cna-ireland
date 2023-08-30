@@ -56,6 +56,34 @@ label[for="id_remember"] {
     color: black;
 }
 
+.btn-outline-dark {
+    background: white;
+    color: black !important;
+    border: 1px solid black;
+}
+
+.btn-dark {
+    background: black;
+    color: white;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:active,
+.btn-outline-dark:focus {
+    background: black;
+    color: white !important;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-dark:hover,
+.btn-dark:active,
+.btn-dark:focus {
+    background: #222;
+    color: white;
+}
+
 /* .overlay {
    height: 100%;
    width: 100%;

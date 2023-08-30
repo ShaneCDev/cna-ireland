@@ -3,17 +3,30 @@ from .models import Blog
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import linebreaksbr
+from .forms import BlogForm
+from django.db.models import Q
+from django.db.models.functions import Lower
+from django.utils.text import slugify
+from datetime import datetime
 
 
 def all_blogs(request):
     blogs = Blog.objects.all()
+    query = None
 
-    sorted_blogs = blogs.order_by('-blog_date')
-
-    print(sorted_blogs)
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect(reverse('blogs'))
+        
+        queries = Q(title__icontains=query) | Q(content__icontains=query)
+        blogs = blogs.filter(queries)
 
     context = {
-        'blogs': sorted_blogs,
+        'blogs': blogs,
+        'search_term': query,
     }
     template = 'blog/blogs.html'
 
@@ -48,3 +61,33 @@ def delete_blog(request, slug):
 
     messages.success(request, 'Blog post deleted.')
     return redirect(reverse('blogs'))
+
+
+@login_required
+def add_blog(request):
+    """Add a blog post"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that.')
+        return redirect(reverse('home'))
+    
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES, initial={'author': request.user})
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.slug = slugify(blog.title)
+            blog.blog_time = datetime.now().time()
+            blog.author = request.user
+            blog.save()
+            messages.success(request, 'Successfully added blog post!')
+            return redirect(reverse('blog_detail', kwargs={'slug': blog.slug}))
+        else:
+            messages.error(request, 'Failed to add Blog post. Please ensure the form is valid.')
+    else:
+        form = BlogForm(initial={'author': request.user})
+    
+    template = 'blog/add_blog.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
