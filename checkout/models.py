@@ -1,5 +1,5 @@
 import uuid
-
+from datetime import datetime
 from django.db.models import Sum
 from django.db import models
 from django.conf import settings
@@ -24,6 +24,7 @@ class Order(models.Model):
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateField(auto_now_add=True)
     order_time = models.TimeField(null=True)
+    order_datetime = models.DateTimeField(null=True)
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
@@ -31,7 +32,7 @@ class Order(models.Model):
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     class Meta:
-        ordering = ['-date', '-order_time']
+        ordering = ['-order_datetime']
 
     def _generate_order_number(self):
         """
@@ -55,6 +56,9 @@ class Order(models.Model):
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
+
+        if self.date and self.order_time:
+            self.order_datetime = datetime.combine(self.date, self.order_time)
         super().save(*args, **kwargs)
 
     def __str__(self):

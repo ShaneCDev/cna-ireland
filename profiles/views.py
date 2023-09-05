@@ -24,7 +24,8 @@ def profile(request):
             messages.error(request, 'Error updating profile. Please ensure the form is valid')
     else:
         form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
+    orders = profile.orders.all().order_by('-order_datetime')
+    orders = list(orders)[::-1]
     # orders = orders.order_by('-date', '-order_time')
 
     template = 'profiles/profile.html'
