@@ -41,7 +41,7 @@
     <title>CNA Ireland {% block extra_title %}{% endblock %}</title>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <header class="container-fluid fixed-top">
         <div id="topnav" class="row pt-lg-2 d-none d-lg-flex primary-color">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
@@ -73,18 +73,6 @@
                                 <p class="my-0">My Account</p>
                             </div>
                         </a>
-                        <!-- <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                            {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
-                                    <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
-                                {% endif %}
-                                <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                            {% else %}
-                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                            {% endif %}
-                        </div> -->
 
                         <div class="dropdown-menu border-0 primary-color bg-white" aria-labelledby="user-options">
                             {% if request.user.is_superuser %}
@@ -158,17 +146,17 @@
     {% block page_header %}
     {% endblock %}
     
-    {% block content %}
-    {% endblock %}
+    <main class="flex-shrink-0 content">
+        {% block content %}
+        {% endblock %}
+    </main>
     
-    
-    <!-- {% include 'includes/footer.html' %} -->
+    {% include 'includes/footer.html' %}
 
     {% block postloadjs %}
     <script type="text/javascript">
         const toastElement = document.querySelector('.toast');
         const toast = new bootstrap.Toast(toastElement);
-        // toastElement.classList.add('show');
         toast.show();
     </script>
     {% endblock %}
