@@ -129,7 +129,7 @@ def edit_product(request, slug, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -142,7 +142,7 @@ def edit_product(request, slug, product_id):
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing { product.name }')
-    
+
     template = 'products/edit_product.html'
     context = {
         'form': form,
@@ -158,7 +158,7 @@ def delete_product(request, id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     product = get_object_or_404(Product, id=id)
     product.delete()
     messages.success(request, f'{ product.name } deleted.')

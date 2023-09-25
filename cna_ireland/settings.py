@@ -118,25 +118,6 @@ LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'cna_ireland.wsgi.application'
 
-# Logging
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': 'logs/django.log',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'level': 'DEBUG',
-#         },
-#     },
-# }
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

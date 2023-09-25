@@ -20,7 +20,7 @@ def all_blogs(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('blogs'))
-        
+
         queries = Q(title__icontains=query) | Q(content__icontains=query)
         blogs = blogs.filter(queries)
 
@@ -57,8 +57,6 @@ def delete_blog(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     blog.delete()
 
-    # show_grand_total = False
-
     messages.success(request, 'Blog post deleted.')
     return redirect(reverse('blogs'))
 
@@ -69,7 +67,7 @@ def add_blog(request):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES, initial={'author': request.user})
         if form.is_valid():
@@ -84,7 +82,7 @@ def add_blog(request):
             messages.error(request, 'Failed to add Blog post. Please ensure the form is valid.')
     else:
         form = BlogForm(initial={'author': request.user})
-    
+
     template = 'blog/add_blog.html'
     context = {
         'form': form,
@@ -99,7 +97,7 @@ def edit_blog(request, slug):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that.')
         return redirect(reverse('home'))
-    
+
     blog = get_object_or_404(Blog, slug=slug)
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES, instance=blog)
@@ -112,7 +110,7 @@ def edit_blog(request, slug):
     else:
         form = BlogForm(instance=blog)
         messages.info(request, f'You are editing { blog.title }')
-    
+
     template = 'blog/edit_blog.html'
     context = {
         'form': form,
