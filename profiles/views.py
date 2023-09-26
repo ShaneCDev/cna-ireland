@@ -26,7 +26,6 @@ def profile(request):
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all().order_by('-order_datetime')
     orders = list(orders)[::-1]
-    # orders = orders.order_by('-date', '-order_time')
 
     template = 'profiles/profile.html'
     context = {
