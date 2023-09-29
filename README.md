@@ -1,17 +1,17 @@
-# cna-ireland
+# CNA Ireland
 This is an E-Commerce website I made for a fictional business that will be selling CBD Products and sharing blog posts related to CBD and its benefits. The main purpose is to get customers thinking about and considering about alternative health routes that holistic and not modern medicine for lack of a better term.
-![AmIResponsive](/docs/readmeimgs/amiresponsive%20image.png)
-The website can be viewed here. [MGSR](https://reddjango.herokuapp.com/)
+![AmIResponsive](/docs/validation/amiresponsive.png)
+The website can be viewed here. [CNA Ireland](https://cnaireland-6f6c57542d6c.herokuapp.com/)
 
 # Index - Table of Contents
 
-- [User Experience (UX)](https://github.com/ShaneCDev/reddango#user-experience-ux)
-- [Features](https://github.com/ShaneCDev/reddango#features)
-- [Technologies Used](https://github.com/ShaneCDev/reddango#technologies-used)
-- [Testing](https://github.com/ShaneCDev/reddango#testing)
-- [Deployment](https://github.com/ShaneCDev/reddango#deployment)
-- [Credits](https://github.com/ShaneCDev/reddango#credits)
-- [Acknowledgments](https://github.com/ShaneCDev/reddango#acknowledgments)
+- [User Experience (UX)](https://github.com/ShaneCDev/cna-ireland#user-experience-ux)
+- [Features](https://github.com/ShaneCDev/cna-ireland#features)
+- [Technologies Used](https://github.com/ShaneCDev/cna-ireland#technologies-used)
+- [Testing](https://github.com/ShaneCDev/cna-ireland#testing)
+- [Deployment](https://github.com/ShaneCDev/cna-ireland#deployment)
+- [Credits](https://github.com/ShaneCDev/cna-ireland#credits)
+- [Acknowledgments](https://github.com/ShaneCDev/cna-ireland#acknowledgments)
 
 # User Experience (UX)
 
@@ -58,19 +58,15 @@ site.
 # 4. Skeleton
 ## Wireframes
 The wireframes were made using Balsamiq.
-- [Home](docs/wireframes/homepagewireframe.png)
-- [Movies, Games, Shows](docs/wireframes/mgs%20pages%20wireframes.png)
-- [Detail Page](docs/wireframes/detailpageswireframe.png)
-- [Review, Edit Review](docs/wireframes/reviewwireframe.png)
-- [Register](docs/wireframes/signupwireframe.png)
-- [Login](docs/wireframes/signinwireframe.png)
-- [Signout](docs/wireframes/signoutwireframe.png)
+- [Home](docs/wireframes/homepagewireframe.pdf)
+- [Products](docs/wireframes/productswireframe.pdf)
+- [Product Detail Page](docs/wireframes/productdetailwireframe.pdf)
+- [Register](docs/wireframes/signup.pdf)
+- [Login, Signout](docs/wireframes/signout.pdf)
 
 # 5. Surface
 - ## Colour
-![Colour Pallette](docs/readmeimgs/colourpalette.png)
-
-The colour palette is basic enough but I think its clean and nice, it consists of a whtie and black. Its simple but effective in my opinion.
+The colour palette is basic enough but I think its clean and nice, it consists of a white and black. Its simple but effective in my opinion.
 
 - ## Font
 ---
@@ -80,7 +76,7 @@ The colour palette is basic enough but I think its clean and nice, it consists o
 ## Existing Features
 
 ## Navigation Bar
-![Navigation Bar](/docs/readmeimgs/navbar.png)
+![Navigation Bar](/docs/readmeimgs/navigation%20bar.png)
 - The navigation bar is fixed for this multi-paged website.
 - There is a very simple "MGS | Reviews" logo located to the left of the navigation bar, located slightly to the right of the logo is each page and depending on if the user is logged in or not this will look different. If the user is logged in then the navbar links will be "Home, Movies, Games, Shows, Logout" if they are not logged in then it will be as follows "Home, Movies, Games, Shows, Register, Login".
 - The logo acts as a button also and clicking on it will redirect you back to the home page.
@@ -92,39 +88,26 @@ The colour palette is basic enough but I think its clean and nice, it consists o
 - The home page is made up of three carousels which I think is a nice way of displaying different media.
 - The page is evenly divided into three rows, each image in the carousel is clickable and clicking on any of them will bring the user to the detail page for whatever they clicked on for example if the user clicks on Sekiro they will be brought to the Sekiro detail page.
 
-## Movies
-![Movies](docs/readmeimgs/moviespage.png)
-- This is the movies page and it is a 4x4 grid of twelve movies posters which are easily recognisable and upon clicking on them the user will be brought to the detail page.
-- This layout is shared across the Games, and Shows pages also to keep things consistent.
+## Products
+![Products](docs/readmeimgs/products.png)
+- This is the products page and it will be layed out different depending on the screen that the user is accessing the site on, upon clicking on them the user will be brought to the detail page.
 
-## Movie Detail
-![Movie Detail](docs/readmeimgs/moviesdetail.png)
-- This detail page is also shared across Games, and Shows with some minor details in the data that is displayed to the user.
-- There is also a "Leave A Review" button that will be on this page if the user is logged in and has not yet left a review.
-- If there are no reviews for the movie then "No reviews for this movie yet" will be displayed.
-- If the user has already left a review the review will be displayed here in a little card and at the bottom of the card will be an edit button should they wish to edit their review.
+## Product Detail
+![Product Detail](docs/readmeimgs/productdetail.png)
+- This is the product detail page that will show the user a detailed view of the product.
+- There is also a "Add To Bag" and "Keep Shopping" button that will be on this page regardless if the user is logged in or not.
 
-## Games
-![Games](docs/readmeimgs/gamespage.png)
+## Blogs
+![Blogs](docs/readmeimgs/blog.png)
 
-## Games Detail
-![Games Detail](docs/readmeimgs/gamesdetail.png)
+## Blog Detail
+![Blog Detail](docs/readmeimgs/blog%20detail.png)
 
-## Shows
-![Shows](docs/readmeimgs/showspage.png)
+## Why Us
+![Why Us](docs/readmeimgs/whyus.png)
 
-## Shows Detail
-![Shows Detail](docs/readmeimgs/showsdetail.png)
-
-## Review
-![Review](docs/readmeimgs/reviewpage.png)
-- This is the page the user will be brought to upon clicking the "Leave A Review" button.
-- This page consists of a form for the user to fill out which upon submitting will redirect them back to the page they just came from and post their review for all users to see.
-- I implemented pagination as to not clutter the page too much so there is only three reviews showing at a time.
-- This design is shared with the "edit review" page. The only difference being is that instead of the form being blank it is already filled out with your review that can be edited to your liking.
-
-## Edit Review
-![Edit Review](docs/readmeimgs/editreviewpage.png)
+## Checkout
+![Checkout](docs/readmeimgs/checkout.png)
 
 # Technologies Used
 
@@ -144,19 +127,11 @@ The colour palette is basic enough but I think its clean and nice, it consists o
 # Testing
 - ## HTML Validator
     At various stages HTML Validation was done.
-    - [Home Page HTML Validation]()
-    - [Detailed Page HTML Validation]()
-    - [Movies Page HTML Validation]()
-    - [Games Page HTML Validation]()
-    - [Shows Page HTML Validation]()
-    - [Review Page HTML Validation]()
-    - [Signout Page HTML Validation]()
-    - [Signup Page HTML Validation]()
-    - [Login Page HTML Validation]()
+    - The Site has not passed HTML Validation and I do not have enough time to correct this.
 
 - ## CSS Validator
     At various stages CSS Validation was done.
-    ![CSS Validation](docs/validation/css-validation.png)
+    ![CSS Validation](docs/validation/cssvalidation.png)
 
 - ## Lighthouse
     At various stages Lighthouse testing was done.

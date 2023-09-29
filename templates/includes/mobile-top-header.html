@@ -7,7 +7,7 @@
         </div>
     </a>
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0 primary-color" aria-labelledby="mobile-search">
-        <form action="GET" class="form" action="#">
+        <form action="GET" class="form">
             <div class="input-group w-100">
                 <input type="text" class="form-control border border-light rounded-0" name="q"
                     placeholder="Search our site">
@@ -23,7 +23,7 @@
     </div>
 </li>
 <li class="list-inline-item dropdown justify-content-end">
-    <a href="" class="text-white nav-link d-block d-lg-none" id="user-options" data-bs-toggle="dropdown"
+    <a href="" class="text-white nav-link d-block d-lg-none" id="user-phone-options" data-bs-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <div><i class="fas fa-user fa-lg"></i></div>
@@ -32,14 +32,14 @@
     </a>
 
 
-    <div class="dropdown-menu border-0 primary-color bg-white" aria-labelledby="user-options">
+    <div class="dropdown-menu border-0 primary-color bg-white" aria-labelledby="user-phone-options">
         {% if request.user.is_superuser %}
         <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuPhoneButton" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Site Management
             </button>
-            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuPhoneButton">
                 <li><a href="{% url 'add_category' %}" class="dropdown-item">Add A Category</a></li>
                 <li><a href="{% url 'add_product' %}" class="dropdown-item">Add A Product</a></li>
                 <li><a href="{% url 'add_blog' %}" class="dropdown-item">Add A Blog Post</a></li>
