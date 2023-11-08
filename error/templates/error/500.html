@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Error 500 - Internal Server Error! {% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 style="font-size: 3em; color: #333;">500 - Internal Server Error</h1>
+        <p style="font-size: 1.2em; color: #777;">Sorry, something went wrong on our end. We're working our hardest to fix it.</p>
+        <p style="font-size: 1.2em; color: #777;">Go back to <a href="{% url 'home' %}">the homepage.</a></p>
+    </div>
+{% endblock %}

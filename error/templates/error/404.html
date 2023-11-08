@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Error 404 - Page not found! {% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 style="font-size: 3em; color: #333;">404 - Page Not Found</h1>
+        <p style="font-size: 1.2em; color: #777;">The page you are looking for might have been removed or does not exist.</p>
+        <p style="font-size: 1.2em; color: #777;">Go back to <a href="{% url 'home' %}">the homepage.</a></p>
+    </div>
+{% endblock %}
