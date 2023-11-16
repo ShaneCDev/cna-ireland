@@ -36,6 +36,10 @@ body {
     height: 75%;
 }
 
+.spacer {
+    margin-top: 2.5rem;
+}
+
 .tertiary-color {
     color: var(--tertiary-color);
 }
