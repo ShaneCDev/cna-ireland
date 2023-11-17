@@ -5,7 +5,10 @@
             <a href="#" class="text-muted me-2" data-bs-toggle="modal" data-bs-target="#modal-refund">Refund Policy</a>
             <a href="#" class="text-muted me-2" data-bs-toggle="modal" data-bs-target="#modal-returns">Returns Policy</a>
         </p>
-        <p class="m-0 text-center text-light"><a href="#"></a></p>
+        <p class="m-0 text-center text-light">
+            <a href="{% url 'terms_and_conditions' %}"  class="text-light" style="text-decoration: none;">Terms and Conditions |</a>
+            <a href="{% url 'privacy' %}" class="text-light me-2" style="text-decoration: none;">Privacy Policy</a>
+        </p>
     </div>
 
     <div id="modal-refund" class="modal" tabindex="-1" role="dialog">
