@@ -92,6 +92,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'home.nav_contexts.category_nav',
                 'bag.contexts.bag_contents',
             ],
             'builtins': [
