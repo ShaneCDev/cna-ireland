@@ -122,6 +122,8 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 8
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_FORM_CLASS = 'cna_ireland.forms.MyCustomSignupForm'
+
 
 WSGI_APPLICATION = 'cna_ireland.wsgi.application'
 
