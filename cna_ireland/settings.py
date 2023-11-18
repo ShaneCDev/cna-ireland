@@ -14,6 +14,7 @@ from pathlib import Path
 import dj_database_url
 import os
 import mimetypes
+import django_recaptcha
 if os.path.isfile('env.py'):
     import env
 
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'blog',
     'why',
     'contact',
+    'django_recaptcha',
     'error',
 
     'crispy_forms',
@@ -122,6 +124,14 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'cna_ireland.wsgi.application'
+
+
+# Google Recaptcha
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
+NOCAPTCHA = True
+SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
+RECAPTCHA_REQUIRED_SCORE = 0.85
 
 
 # Database
