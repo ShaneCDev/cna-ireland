@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
-from .models import Category, Product
-from .forms import ProductForm, CategoryForm
+from .models import Category, Product, ProductReview
+from .forms import ProductForm, CategoryForm, ReviewForm
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def all_products(request):
@@ -61,13 +62,57 @@ def all_products(request):
 def product_detail(request, slug):
     """Detailed view of the product"""
     product = get_object_or_404(Product, slug=slug)
+    all_reviews = ProductReview.objects.filter(product=product)
+    paginator = Paginator(all_reviews, 3)
+    page = request.GET.get('page')
 
-    context = {
-        'product': product,
-    }
+    try:
+        reviews = paginator.page(page)
+    except PageNotAnInteger:
+        reviews = paginator.page(1)
+    except EmptyPage:
+        reviews = paginator.page(paginator.num_pages)
+
+
+    if request.user.is_anonymous:
+        context = {
+            'product': product,
+            'all_reviews': all_reviews,
+            'reviews': reviews
+        }
+    else:
+        already_reviewed = all_reviews.filter(author=request.user)
+        if already_reviewed:
+            reviewed = True
+        else:
+            reviewed = False
+        context = {
+            'product': product,
+            'all_reviews': all_reviews,
+            'reviewed': reviewed,
+            'reviews': reviews,
+        }
 
     return render(request, 'products/product_detail.html', context)
 
+
+def review(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, initial={'author': request.user})
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.save()
+            return redirect(reverse('product_detail', kwargs={'slug': product.slug}))
+    else:
+        form = ReviewForm(initial={'author': request.user})
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'product_review.html', context)
 
 @login_required
 def add_product(request):

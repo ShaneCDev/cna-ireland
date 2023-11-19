@@ -73,6 +73,94 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            {% for review in reviews %}
+                            <div class="col-12 mt-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title text-center">
+                                            <h5 class="logo-font text-dark">Review for {{ product.name }}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-dark">
+                                                {{ review.comment }}
+                                            </p>
+                                        </div>
+                                        {% if user == request.author %}
+                                        <a href="#">Edit</a>
+                                        <button class="btn btn-danger">Delete</button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div id="modal-{{ review.id }}" class="modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" style="color: black;">Are you sure you want to delete this review?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="text-dark">This action cannot be undone.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% empty %}
+                            <div class="col-12 mt-2">
+                                <p class="text-dark">There are no reviews for this product yet.</p>
+                            </div>
+                            {% endfor %}
+
+                            {% if reviewed %}
+                                <a href="#" class="btn btn-success" style="display: none;">Leave A Review!</a>
+                            {% elif user.is_authenticated %}
+                                <a href="{% url 'review' slug=product.slug %}" class="btn btn-success" style="margin-bottom: 3px;">Leave A Review!</a>
+                            {% endif %}
+                            
+                            {% if reviews.has_other_pages %}
+                                <nav>
+                                    <ul class="pagination justify-content-center">
+                                        {% if reviews.has_previous %}
+                                            <li class="page-item">
+                                                <a href="?page={{ reviews.previous_page_number }}" class="page-link" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <span class="page-link" aria-hidden="true">&laquo;</span>
+                                            </li>
+                                        {% endif %}
+
+                                        {% for r in reviews.paginator.page_range %}
+                                            {% if reviews.number == r %}
+                                                <li class="page-item"><a href="#" class="page-link" style="color: red;">{{ r }}</a></li>
+                                            {% else %}
+                                                <li class="page-item"><a href="?page={{ r }}" class="page-link">{{ r }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if reviews.has_next %}
+                                            <li class="page-item">
+                                                <a href="?page={{ reviews.next_page_number }}" class="page-link" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <span class="page-link" aria-hidden="true">&raquo;</span>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            {% endif %}
+
 
                             <div class="col-12 mt-2">
                                 <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0 mt-5">

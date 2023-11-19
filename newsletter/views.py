@@ -21,8 +21,6 @@ def subscribe_to_newsletter(request):
                 'api_key': api_key,
             })
 
-            print(form.cleaned_data)
-
             email = form.cleaned_data['email']
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']

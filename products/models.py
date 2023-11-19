@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -27,3 +29,30 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ProductReview(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviewer')
+    review_date = models.DateTimeField(default=timezone.now)
+    scores = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10)
+    )
+    stars = models.IntegerField(choices=scores, default=1)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    comment = models.TextField(max_length=3000)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True, related_name='reviews')
+
+    class Meta:
+        ordering = ['created_on']
+    
+    def __str__(self):
+        return f'Review {self.comment} by {self.author}'
