@@ -209,3 +209,39 @@ def delete_product(request, id):
     product.delete()
     messages.success(request, f'{ product.name } deleted.')
     return redirect(reverse('products'))
+
+
+@login_required
+def edit_review(request, slug, id):
+    product = get_object_or_404(Product, slug=slug)
+    review = get_object_or_404(ProductReview, id=id)
+
+    if request.user != review.author:
+        print(request)
+        messages.error(request, 'Sorry you can not do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Review successfully edited!')
+            return redirect(reverse('product_detail', kwargs={'slug': product.slug}))
+    form = ReviewForm(instance=review)
+    context = {
+        'form': form,
+    }
+    return render(request, 'products/edit_review.html', context)
+
+
+@login_required
+def delete_review(request, id):
+    review = get_object_or_404(ProductReview, id=id)
+    if request.user != review.author:
+        messages.error(request, 'Sorry you can not do that.')
+        return redirect(reverse('home'))
+    
+    review.delete()
+    messages.success(request, 'Your review was successfully deleted.')
+    return redirect(reverse('product_detail', kwargs={'slug': review.product.slug}))
+    

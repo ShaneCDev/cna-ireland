@@ -88,8 +88,8 @@
                                             </p>
                                         </div>
                                         {% if user == review.author %}
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        <a href="{% url 'edit_review' slug=product.slug id=review.id %}" class="btn btn-warning">Edit</a>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-{{ review.id }}">Delete</button>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -105,6 +105,7 @@
                                                 <p class="text-dark">This action cannot be undone.</p>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="{% url 'delete_review' id=review.id %}" class="btn btn-danger">Delete</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
