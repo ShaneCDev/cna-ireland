@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'blog',
     'why',
     'contact',
+    'newsletter',
     'django_recaptcha',
     'error',
 
@@ -193,6 +194,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+MAILCHIMP_LIST_ID = os.environ.get('MAILCHIMP_LIST_ID')
 
 if 'USE_AWS' in os.environ:
     AWS_S3_OBJECT_PARAMETERS = {

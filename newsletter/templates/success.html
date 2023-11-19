@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+    <div class="container spacer">
+        <div class="row">
+            <div class="col-12 col-md-6 text-dark">
+                <h1 class="display-4">Awesome!</h1>
+                <p class="lead">You have successfully subscribed to our newsletter!
+                    click <a href="{% url 'home' %}">here</a> to return to the homepage.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
