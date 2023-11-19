@@ -80,15 +80,16 @@
                                     <div class="card-body">
                                         <div class="card-title text-center">
                                             <h5 class="logo-font text-dark">Review for {{ product.name }}</h5>
+                                            <p class="text-muted">Review by: {{ review.author }} | <span class="text-end">Score: {{ review.stars }}/10</span></p> 
                                         </div>
                                         <div class="card-body">
                                             <p class="text-dark">
                                                 {{ review.comment }}
                                             </p>
                                         </div>
-                                        {% if user == request.author %}
-                                        <a href="#">Edit</a>
-                                        <button class="btn btn-danger">Delete</button>
+                                        {% if user == review.author %}
+                                        <a href="#" class="btn btn-warning">Edit</a>
+                                        <button type="button" class="btn btn-danger">Delete</button>
                                         {% endif %}
                                     </div>
                                 </div>

@@ -109,10 +109,11 @@ def review(request, slug):
     else:
         form = ReviewForm(initial={'author': request.user})
     
+    template = 'products/product_review.html'
     context = {
         'form': form,
     }
-    return render(request, 'product_review.html', context)
+    return render(request, template, context)
 
 @login_required
 def add_product(request):
