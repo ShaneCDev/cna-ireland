@@ -33,17 +33,52 @@ The website can be viewed here. [CNA Ireland](https://cnaireland-6f6c57542d6c.he
 6. Contact the site owner/customer service.
 
 - ## As a returning website user I want:
-1. To check out other people's reviews.
-2. Change my review and review score if my opinion should change.
+1. To check out other people's product reviews.
+2. Leave reviews on products.
+3. Change my review and review score if my opinion should change.
+4. Log into my account and view my orders.
+5. Log into my account and change delivery details should it be required.
+ 
 
-# 1. Strategy
+# 1. Business Model
+## Value Proposition
+- Quality CBD Products: Offer a curated selection of high-quality CBD products, ensuring potency and safety.
+- Convenience: Provide easy access to Cbd products through an intuitive and secure e-commerce platform.
+- Educational Content: Offer informative resources about CBD benefits, usage and general information via blog posts.
+## Customer Segments
+- Health-Conscious Individuals: People seeking an holistic approach to various health issues.
+- Fitness Entusiasts: Athletes and fitness oriented individuals looking for recovery and wellness aids.
+## Key Activities
+- Product Management: Source and curate a range of reputable CBD Products.
+- Website Management: Develop and maintain a user friendly e-commerce platform.
+- Customer Service: Provide responsive support regarding inquiries and assitance.
+## Key Resources
+- E-commerce Platform: User friendly website for product showcasing and selling.
+- Product Suppliers: Establish long-lasting partnerships with reliable suppliers.
+- Educational Content: Create informative content regarding CBD.
+## Customer Relationships
+- Online Support: Provide responsive customer service via email or whatsapp.
+- Newsletter/Updates: Newsletters will be sent out to all subscribers every quarter.
+- Educational Content: Offer blogs posts about CBD and its benefits.
+## Revenue Streams
+- Product Sales: Income generated from products sold on the website.
+## Cost Structure
+- Product Procurement Costs: Expenses that are associated with sourcing and purchasing the products.
+- Website Maintenance: Costs for hosting, platform maintenance, potential scalability.
+- Marketing Expenses: Budget for digital campaigns, advertising and content creation.
+## Key Metrics
+- Sales Revenue: Track income generated from product sales.
+- Website Traffic: Measure the number of visitors to the site.
+- Conversion Rate: Monitor the percentage of visitors that make a purchase.
+- Customer Retention Rate: Assess how many customers return for repeated purchases. 
+# 2. Strategy
 - The main purpose of the site is to provide people with place to purchase CBD products whether it be for medical reasons or recreational ones.
 
-# 2. Scope
+# 3. Scope
 - The multipage design is simple and the information provided is clear and concise.
 - The information can be accessed on all devices.
 
-# 3. Structure
+# 4. Structure
 - Users will find themselves on the homepage where they will be met by a background image and a "Shop Now" button and clicking this button will take users to the products page. Users will also see a navigation bar at the top of the screen.
 - The fixed nav bar has a logo on the left search bar in the centre and the navigation items positioned slightly below the search bar, to the right of the search bar you can check your bag or register for an account or login.
 - The are all layed out different depending on what screen you are using to visit the site.
@@ -55,7 +90,7 @@ The website can be viewed here. [CNA Ireland](https://cnaireland-6f6c57542d6c.he
 - The footer sections provides the user with social media links to follow the hosts of the 
 site.
 
-# 4. Skeleton
+# 5. Skeleton
 ## Wireframes
 The wireframes were made using Balsamiq.
 - [Home](docs/wireframes/homepagewireframe.pdf)
@@ -64,7 +99,7 @@ The wireframes were made using Balsamiq.
 - [Register](docs/wireframes/signup.pdf)
 - [Login, Signout](docs/wireframes/signout.pdf)
 
-# 5. Surface
+# 6. Surface
 - ## Colour
 The colour palette is basic enough but I think its clean and nice, it consists of a white and black. Its simple but effective in my opinion.
 
@@ -164,18 +199,45 @@ The following was manually tested and resulted in a pass:
 - ## Register Page
     - Filling out this form allows users to register an account so that they can buy products after clicking the confirmation email link that will be sent upon registration.
     - If a user already exists for example (Shane101) and a new user goes to sign up with the same username (Shane101) there is a message shown saying that a user with that username already exists and the form is not submitted.
+    - Google ReCaptcha is now present on the register form as protection from bots.
 - ## Sign in Page
     - Upon entering in your credentials you will be logged in to the website and an alert message displays letting you know that you logged in successfully.
 - ## Sign out Page
     - Upon clicking the sign out button the user is logged out and an alert message letting the user know that they signed out is displayed.
 - ## Blog Page
     - Blogs are stacked on top of eachother using Bootstrap cards to contain their image, title and author, also there is a "Read More" button at the end of the blog card that when clicked will take them to the blog detail view where they can read the blog post in its entirety.
+- ## Why Us Page
+    - The Why Us page displays to the user, everything about CNA Irealand. It explains who CNA Ireland are, why customers should choose them. It provides a good level of detail about the vision.
+- ## Product Reviews
+    - A review can be left on any product, users who have an account can leave reviews. They can edit their own reviews only and also delete their own reviews if they wish. Unauthorised users will not be able to access these pages.
+    - Upon clicking the "Leave A Review" button users will be redirected to product_review.html where they will be presented with a rating for the product and a text area to leave their review.
+    - Upon submission of the review users are redirected back to the product_detail.html page of whatever product they were looking at previously, from here they can see their review.
+- ## Bag
+    - Bag.html displays what users have in their bag to them.
+    - If a user has nothing in there a message will display saying "Your bag is empty" and present them with a "Keep Shopping" button which when clicked will redirect the user back to the produtcts page.
+    - If there is a product in the users bag, the product image, price, quantity and subtotal will be shown along with the delivery cost, bag total and grand total figures. 
+    - If there is a product in the users bag, they can update the quantity of the product from this page with + and - buttons or they can completely remove the product from their bag if they wish.
+    - There is a "Secure Checkout" button on this page and upon clicking it the user is redirected to the checkout page.
+- ## Checkout
+    - The checkout page as the name implies is where users complete their order.
+    - The users will have a form to fill out this form consists of, full name, email, phone number, address, town/city, county/state, post code, country and finally card details.
+    - If the user has their delivery details saved to their profile this form will be automatically populated and they will only have to fill out the payment form. All other users will have to fill out the full thing is their delivery details are not saved to their profile.
+    - Upon successful submission of the form users are redirected to the checkout success page. Here they will see a Thank You message and their order information. At this stage a order confirmation email will be sent to their email address they provided.
+- ## Contact Us
+    - Upon clicking "Contact Us" in the navbar users will be redirected to the contact page where they can either fill out the form and submit and email inquiry or they can reach out via WhatsApp. Upon successful submission of this form an email is sent to cna.ireland.ecom@gmail.com where the site owners can respond to the inquiry from there.
+- ## Footer
+    - The footer consists of CNA Irelands Refund Policy, Returns Policy, Terms and Conditions, Privacy Policy, and Subscribe To Our Newsletter.
+    - Upon clicking "Refund Policy" and/or "Returns Policy" a modal will pop up on the screen with all the information regarding these two policies.
+    - Upon clicking "Terms and Conditions" users will be redirected to CNA Irelands Terms and Conditions page where they ofcourse can read about the Ts & Cs.
+    - Upon clicking "Privacy Policy" users will be redirected to CNA Irelands privacy policy page where they can read all information regarding this policy.
+    - Upon clicking "Subscribe To Our Newsletter" users will be redirected to a new page where they will be prompted to enter their name and email address. Upon successful submission of this form users will now be subscribed to CNA Irelands newsletter which will be sent out every quarter.
+
 ---
 # Future Implementation
-- I would like to add a newsletter.
+- I would like to add a newsletter. | Added Mailchimp Newsletter
 - Add "like" button functionality to products.
 - Add a "wishlist" for users.
-- Maybe add reviews to the products but I am not sure if that would suit a site that sells these kind of products.
+- Maybe add reviews to the products but I am not sure if that would suit a site that sells these kind of products. | Have now added Product Review functionality
 - Add a fully functional stripe checkout instead of the card element, I tried to do this but it completely broke the whole site so I decided to scrap it in order to get the project submitted in time.
 
 # Deployment
@@ -226,7 +288,7 @@ To clone the repo:
 pip3 install -r requirements.txt
 ```
 
-The website can be viewed here. [MGSR](https://reddjango.herokuapp.com/)
+The website can be viewed here. [CNA Ireland](https://cnaireland-6f6c57542d6c.herokuapp.com/)
 
 # Credits
 - ## Images
