@@ -3,6 +3,7 @@ Disallow: /profile/
 Disallow: /bag/
 Disallow: /accounts/
 Disallow: /admin/
+Sitemap: https://cnaireland-6f6c57542d6c.herokuapp.com/sitemap.xml
 
 User-agent: GPTBot
 Disallow: /

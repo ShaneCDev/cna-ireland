@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/bag/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/why/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/?sort=price&amp;directions=asc</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/?sort=category&amp;direction=asc</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/blog/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/contact/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/cbd-gummies</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/?category=cbd</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=/products/delete/4/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/cbd-vape</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=/products/delete/2/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/cbd-bud-lemon-strain</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=/products/delete/6/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/cbd-bud</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=/products/delete/1/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/cbd-oil</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=/products/delete/3/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/products/cbd-cream</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=/products/delete/5/</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/blog/unlocking-the-benefits-of-cbd-oil-natures-wellness</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2F4%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2F2%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2F6%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2F1%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2F3%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2F5%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=%2Fproducts%2Fdelete%2F4%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=%2Fproducts%2Fdelete%2F2%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=%2Fproducts%2Fdelete%2F6%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=%2Fproducts%2Fdelete%2F1%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=%2Fproducts%2Fdelete%2F3%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://cnaireland-6f6c57542d6c.herokuapp.com/accounts/login/?next=%2Fproducts%2Fdelete%2F5%2F</loc>
+  <lastmod>2023-11-20T21:05:22+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+
+
+</urlset>
