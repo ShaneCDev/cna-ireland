@@ -10,9 +10,6 @@ def subscribe_to_newsletter(request):
     api_key = settings.MAILCHIMP_API_KEY
     list_id = settings.MAILCHIMP_LIST_ID
 
-    print(api_key)
-    print(list_id)
-
     if request.method == 'POST':
         form = NewsletterForm(request.POST)
         if form.is_valid():
