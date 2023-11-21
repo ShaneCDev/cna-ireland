@@ -42,11 +42,11 @@
                     {% if request.user.is_superuser %}
                         <small class="ms-3">
                             <a href="{% url 'edit_product' product.slug product.id %}">Edit</a> <span class="text-dark">|</span>
-                            <a href="" class="text-danger" data-bs-target="modal-{{ product.id }}" data-bs-toggle="modal">Delete</a>
+                            <a href="" class="text-danger" data-bs-target="#product-modal-{{ product.id }}" data-bs-toggle="modal">Delete</a>
                         </small>
                     {% endif %}
 
-                    <div id="modal-{{ product.id }}" class="modal" tabindex="-1" role="dialog">
+                    <div id="product-modal-{{ product.id }}" class="modal" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">

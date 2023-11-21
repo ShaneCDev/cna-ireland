@@ -240,8 +240,9 @@ def delete_review(request, id):
     if request.user != review.author:
         messages.error(request, 'Sorry you can not do that.')
         return redirect(reverse('home'))
-    
+
     review.delete()
+
     messages.success(request, 'Your review was successfully deleted.')
     return redirect(reverse('product_detail', kwargs={'slug': review.product.slug}))
     
