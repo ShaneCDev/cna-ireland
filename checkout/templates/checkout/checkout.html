@@ -67,7 +67,7 @@
                     <div class="col-3">
                         <p class="my-0">€{{ total | floatformat:2 }}</p>
                         <p class="my-0">€{{ delivery | floatformat:2 }}</p>
-                        <p class="my-0"><strong>{{ grand_total | floatformat:2 }}</strong></p>
+                        <p class="my-0" id="total-price"><strong>{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
             </div>
@@ -89,6 +89,10 @@
                         {{ order_form.county | as_crispy_field }}
                         {{ order_form.postcode | as_crispy_field }}
                         {{ order_form.country | as_crispy_field }}
+                        {{ order_form.discount_code | as_crispy_field }}
+                        <div class="form-group">
+                            <p class="text-dark">Use this discount code: <strong>CNA10</strong> for 10% off your order</p>
+                        </div>
                         <div class="form-check form-check-inline float-start me-0">
                             {% if user.is_authenticated %}
                                 <label for="id-save-info" class="form-check-label text-dark">Save this delivery information to my profile</label>
@@ -101,6 +105,10 @@
                             {% endif %}
                         </div>
                     </fieldset>
+                    <!-- <fieldset class="px-3">
+                        <legend class="fieldset-label small text-dark px-3 w-auto">Discount Code</legend>
+                        
+                    </fieldset> -->
                     <fieldset class="px-3">
                         <legend class="fieldset-label small text-dark px-3 w-auto">Payment</legend>
                         <div class="mb-3" id="card-element"></div>

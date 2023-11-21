@@ -10,8 +10,8 @@ from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
-from .forms import OrderForm
-from .models import Order, OrderLineItem
+from .forms import OrderForm, DiscountForm
+from .models import Order, OrderLineItem, Discount
 
 
 @require_POST
@@ -49,6 +49,7 @@ def checkout(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
+            'discount_code': request.POST['discount_code'],
         }
 
         order_form = OrderForm(form_data)
@@ -58,6 +59,20 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
+
+            discount_code = form_data.get('discount_code')
+
+            if discount_code:
+                try:
+                    discount = Discount.objects.get(code=discount_code)
+
+                    discount_amount = (discount.discount_percent / 100 ) * order.grand_total
+
+                    order.grand_total -= discount_amount
+                    order.save()
+                except Discount.DoesNotExist:
+                    messages.error(request, 'This discount code does not exist.')
+
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -87,7 +102,7 @@ def checkout(request):
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment.")
             return redirect(reverse('products'))
-
+                
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
         stripe_total = round(total * 100)
