@@ -206,6 +206,8 @@ The following was manually tested and resulted in a pass:
     - Upon clicking the sign out button the user is logged out and an alert message letting the user know that they signed out is displayed.
 - ## Blog Page
     - Blogs are stacked on top of eachother using Bootstrap cards to contain their image, title and author, also there is a "Read More" button at the end of the blog card that when clicked will take them to the blog detail view where they can read the blog post in its entirety.
+    - Admins only can create blog posts, they can also edit and delete the blog posts.
+    - This view does a check to see whether the user trying to access the page is a superuser or not, this ensures that normal users can not get to these views.
 - ## Why Us Page
     - The Why Us page displays to the user, everything about CNA Irealand. It explains who CNA Ireland are, why customers should choose them. It provides a good level of detail about the vision.
 - ## Product Reviews
