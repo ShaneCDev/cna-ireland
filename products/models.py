@@ -52,6 +52,7 @@ class ProductReview(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True, related_name='reviews')
 
     class Meta:
+        verbose_name_plural = 'Reviews'
         ordering = ['created_on']
     
     def __str__(self):
