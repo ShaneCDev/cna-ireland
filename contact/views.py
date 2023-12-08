@@ -3,6 +3,7 @@ from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from django.http import HttpResponse
+from .models import Query
 
 
 def contact(request):
@@ -10,9 +11,11 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            query = form.save(commit=False)
             from_email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
+            query.save()
             try:
                 send_mail(subject, message, from_email, [settings.DEFAULT_FROM_EMAIL])
                 console_email = send_mail(subject, message, from_email, [settings.DEFAULT_FROM_EMAIL])

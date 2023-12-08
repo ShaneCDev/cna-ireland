@@ -1,9 +1,12 @@
 from django import forms
 from django_recaptcha.fields import ReCaptchaField
+from .models import Query
 
-class ContactForm(forms.Form):
+
+class ContactForm(forms.ModelForm):
 
     class Meta:
+        model = Query
         fields = '__all__'
 
     email = forms.EmailField(required=True)
