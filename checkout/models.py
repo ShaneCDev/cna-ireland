@@ -10,6 +10,14 @@ from products.models import Product
 from profiles.models import UserProfile
 
 
+class Discount(models.Model):
+    code = models.CharField(max_length=20, unique=True)
+    discount_percent = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return f'{self.code} - {self.discount_percent}% discount'
+
+
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
@@ -30,6 +38,7 @@ class Order(models.Model):
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    discount_code = models.ForeignKey(Discount, null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ['-order_datetime']
@@ -77,11 +86,3 @@ class OrderLineItem(models.Model):
         """
         self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
-
-
-class Discount(models.Model):
-    code = models.CharField(max_length=20, unique=True)
-    discount_percent = models.DecimalField(max_digits=5, decimal_places=2)
-
-    def __str__(self):
-        return f'{self.code} - {self.discount_percent}% discount'

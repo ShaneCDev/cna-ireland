@@ -53,22 +53,23 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
+        
         if order_form.is_valid():
+            discount_code = form_data.get('discount_code')
+            discount = Discount.objects.get(code=discount_code)
             order = order_form.save(commit=False)
+            order.discount_code = discount
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
 
-            discount_code = form_data.get('discount_code')
-
             if discount_code:
                 try:
-                    discount = Discount.objects.get(code=discount_code)
-
-                    discount_amount = (discount.discount_percent / 100 ) * order.grand_total
-
-                    order.grand_total -= discount_amount
+                    discount_amount = (order.grand_total * discount.discount_percent) / 100
+                    print("Discount amount: ", discount_amount)
+                    order.grand_total = order.grand_total - discount_amount
+                    print("Order grand_total: ", order.grand_total)
                     order.save()
                 except Discount.DoesNotExist:
                     messages.error(request, 'This discount code does not exist.')
