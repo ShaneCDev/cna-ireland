@@ -51,4 +51,4 @@ class ReviewForm(forms.ModelForm):
         self.fields['author'].disabled = True
 
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'borer-dark rounded-0'
+            field.widget.attrs['class'] = 'border-dark rounded-0'

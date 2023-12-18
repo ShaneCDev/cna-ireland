@@ -35,9 +35,15 @@ def cache_checkout_data(request):
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
+    # discount_code = get_object_or_404(Discount, code='CNA10')
+    # print("Discount code is: ", discount_code)
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
+
+        print("Request: ", request.POST)
+
+        print("Order Form: ", OrderForm())
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -52,11 +58,12 @@ def checkout(request):
             'discount_code': request.POST['discount_code'],
         }
 
+        discount_code = form_data.get('discount_code')
+        discount = get_object_or_404(Discount, code=discount_code)
         order_form = OrderForm(form_data)
-        
+        print("Order Form: ", order_form)
+        print("Discount: ", discount)
         if order_form.is_valid():
-            discount_code = form_data.get('discount_code')
-            discount = Discount.objects.get(code=discount_code)
             order = order_form.save(commit=False)
             order.discount_code = discount
             pid = request.POST.get('client_secret').split('_secret')[0]
