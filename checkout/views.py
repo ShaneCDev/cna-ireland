@@ -38,6 +38,8 @@ def checkout(request):
     # discount_code = get_object_or_404(Discount, code='CNA10')
     # print("Discount code is: ", discount_code)
 
+    discount_form = DiscountForm()
+
     if request.method == 'POST':
         bag = request.session.get('bag', {})
 
@@ -51,59 +53,34 @@ def checkout(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
-            'discount_code': request.POST['discount_code'],
         }
 
-        discount_code = form_data.get('discount_code')
+        order_form = OrderForm(form_data)
 
-        if discount_code:
-            try:
-                discount = get_object_or_404(Discount, discount_code)
-            except Discount.DoesNotExist:
-                discount = None
-            
-            if discount:
-                order_form = OrderForm(form_data)
+        if order_form.is_valid():
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_bag = json.dumps(bag)
+            order.save()
 
-                if order_form.is_valid():
-                    order = order_form.save(commit=False)
-                    order.discount_code = discount
-                    pid = request.POST.get('client_secret').split('_secret')[0]
-                    order.stripe_pid = pid
-                    order.original_bag = json.dumps(bag)
-                    order.save()
-                else:
-                    messages.error(request, 'There was an error with your form please try again.')
-            else:
-                messages.error(request, 'This discount code does not exist.')
-        else:
-            order_form = OrderForm(form_data)
-
-            if order_form.is_valid():
-                order = order_form.save(commit=False)
-                order.discount_code = discount
-                pid = request.POST.get('client_secret').split('_secret')[0]
-                order.stripe_pid = pid
-                order.original_bag = json.dumps(bag)
-                order.save()
-
-                for item_id, item_data in bag.items():
-                    try:
-                        product = Product.objects.get(id=item_id)
-                        if isinstance(item_data, int):
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=item_data,
+            for item_id, item_data in bag.items():
+                try:
+                    product = Product.objects.get(id=item_id)
+                    if isinstance(item_data, int):
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            product=product,
+                            quantity=item_data,
                             )
-                            order_line_item.save()
-                    except Product.DoesNotExist:
-                        messages.error(request, (
-                            "One of the products in your bag wasn't found in the database."
-                            "Please call us for assistance!")
-                        )
-                        order.delete()
-                        return redirect(reverse('view_bag'))
+                        order_line_item.save()
+                except Product.DoesNotExist:
+                    messages.error(request, (
+                        "One of the products in your bag wasn't found in the database."
+                        "Please call us for assistance!")
+                    )
+                    order.delete()
+                    return redirect(reverse('view_bag'))
 
                 # save the info to the users profile
                 request.session['save_info'] = 'save_info' in request.POST
@@ -153,6 +130,7 @@ def checkout(request):
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
+        'discount_form': discount_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }

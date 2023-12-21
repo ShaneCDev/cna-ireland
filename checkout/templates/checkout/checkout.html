@@ -68,6 +68,12 @@
                         <p class="my-0">€{{ total | floatformat:2 }}</p>
                         <p class="my-0">€{{ delivery | floatformat:2 }}</p>
                         <p class="my-0" id="total-price"><strong>{{ grand_total | floatformat:2 }}</strong></p>
+                        <form action="#" method="post" id="discount-form">
+                            {% csrf_token %}
+                            {% for field in discount_form %}
+                                {{ field| as_crispy_field }}
+                            {% endfor %}
+                        </form>
                     </div>
                 </div>
             </div>
@@ -89,7 +95,6 @@
                         {{ order_form.county | as_crispy_field }}
                         {{ order_form.postcode | as_crispy_field }}
                         {{ order_form.country | as_crispy_field }}
-                        {{ order_form.discount_code | as_crispy_field }}
                         <div class="form-group">
                             <p class="text-dark">Use this discount code: <strong>CNA10</strong> for 10% off your order</p>
                         </div>

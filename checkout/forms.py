@@ -1,15 +1,14 @@
 from django import forms
-from .models import Order, Discount
+from .models import Order
 
 
 class OrderForm(forms.ModelForm):
-    discount_code = forms.CharField(required=False)
     class Meta:
         model = Order
         fields = ('full_name', 'email', 'phone_number',
                   'street_address1', 'street_address2',
                   'town_or_city', 'postcode', 'country',
-                  'county', 'discount_code')
+                  'county')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,7 +21,6 @@ class OrderForm(forms.ModelForm):
             'street_address1': 'Street Address 1',
             'street_address2': 'Street Address 2',
             'county': 'County, State or Locality',
-            'discount_code': 'Enter discount code',
         }
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
@@ -39,7 +37,6 @@ class OrderForm(forms.ModelForm):
 
 class DiscountForm(forms.Form):
     class Meta:
-        models = Discount
         fields = ('discount_code')
 
     def __init__(self, *args, **kwargs):
@@ -50,3 +47,5 @@ class DiscountForm(forms.Form):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'border-dark rounded-0'
+            placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
