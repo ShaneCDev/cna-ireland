@@ -58,7 +58,7 @@
                     </div>
                 {% endfor %}
                 <hr class="my-0 text-dark">
-                <div class="row text-dark text-end">
+                <div class="row text-dark text-start">
                     <div class="col-7 offset-2">
                         <p class="my-0">Order Total:</p>
                         <p class="my-0">Delivery:</p>
@@ -67,13 +67,20 @@
                     <div class="col-3" id="discount-applied">
                         <p class="my-0">€{{ total | floatformat:2 }}</p>
                         <p class="my-0">€{{ delivery | floatformat:2 }}</p>
-                        <p class="my-0" id="total-price"><strong>{{ grand_total | floatformat:2 }}</strong></p>
+                        <p class="my-0" id="total-price"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
+                    </div>
+                </div>
+                <div class="row text-dark text-start">
+                    <div class="col-7 offset-2">
+                        <p class="my-0">Discount Code:</p>
                         <form action="#" method="post" id="discount-form">
                             {% csrf_token %}
-                            {% for field in discount_form %}
-                                {{ field| as_crispy_field }}
-                            {% endfor %}
+                            {{ discount_form.discount_code | as_crispy_field }}
                         </form>
+                        <div class="form-group">
+                            <p class="text-dark">Use discount code: <strong>CNA10</strong> for 10% off your order!</p>
+                        </div>
+                        <button class="btn btn-dark rounded-0">Apply Discount</button>
                     </div>
                 </div>
             </div>
@@ -95,9 +102,6 @@
                         {{ order_form.county | as_crispy_field }}
                         {{ order_form.postcode | as_crispy_field }}
                         {{ order_form.country | as_crispy_field }}
-                        <div class="form-group">
-                            <p class="text-dark">Use this discount code: <strong>CNA10</strong> for 10% off your order</p>
-                        </div>
                         <div class="form-check form-check-inline float-start me-0">
                             {% if user.is_authenticated %}
                                 <label for="id-save-info" class="form-check-label text-dark">Save this delivery information to my profile</label>

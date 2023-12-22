@@ -39,6 +39,8 @@ class DiscountForm(forms.Form):
     class Meta:
         fields = ('discount_code')
 
+    discount_code = forms.CharField(required=False)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
@@ -49,3 +51,4 @@ class DiscountForm(forms.Form):
             self.fields[field].widget.attrs['class'] = 'border-dark rounded-0'
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].label = False
