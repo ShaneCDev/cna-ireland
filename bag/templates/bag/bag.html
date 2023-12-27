@@ -14,7 +14,7 @@
 
 {% block content %}
 <div class="overlay"></div>
-    <div class="container mb-2">
+    <div class="container mb-2" style="margin-top: 2.5rem;">
         <div class="row">
             <div class="col">
                 <h2 class="logo-font text-dark mt-4">Shopping Bag</h2>
@@ -91,6 +91,9 @@
                                 <td colspan="5" class="pt-5 text-end">
                                     <h6><strong>Bag Total: €{{ total|floatformat:2 }}</strong></h6>
                                     <h6>Delivery: €{{ delivery|floatformat:2 }}</h6>
+                                    {% if discount_applied %}
+                                    <h6 class="text-danger">Discount Applied!</h6>
+                                    {% endif %}
                                     <h4 class="mt-4"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
                                 </td>
                             </tr>

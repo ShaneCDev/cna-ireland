@@ -35,8 +35,6 @@ def cache_checkout_data(request):
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-    # discount_code = get_object_or_404(Discount, code='CNA10')
-    # print("Discount code is: ", discount_code)
 
     discount_form = DiscountForm()
 
