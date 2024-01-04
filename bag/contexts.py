@@ -10,6 +10,7 @@ def bag_contents(request):
     product_count = 0
     discount_applied = False
     bag = request.session.get('bag', {})
+    discount_price = 0
 
     for item_id, item_data in bag.items():
         if isinstance(item_data, int):
