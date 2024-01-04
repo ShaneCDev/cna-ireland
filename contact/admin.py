@@ -8,6 +8,6 @@ class QueryAdmin(admin.ModelAdmin):
         'email',
     )
 
-    ordering = ('created_on',)
+    ordering = ('-created_on',)
 
 admin.site.register(Query, QueryAdmin)
