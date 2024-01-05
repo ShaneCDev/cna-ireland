@@ -36,8 +36,9 @@
                     <p class="small mt-1 mb-0">
                         <a href="{% url 'products' %}?category={{ product.category.name }}" class="text-muted">
                             <i class="fas fa-tag me-1 text-dark"></i> <span class="text-dark">{{ product.category.friendly_name }}</span>
-                        </a> <span class="text-dark">|</span>
+                        </a>
                         {% if request.user.is_authenticated %}
+                        <span class="text-dark">|</span>
                         <a href="{% url 'add_to_wishlist' id=product.id %}">
                             <i class="fa-solid fa-heart me-1 text-dark"></i><span class="text-dark">Add To Wishlist</span>
                         </a>
