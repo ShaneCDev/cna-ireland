@@ -41,6 +41,9 @@ The website can be viewed here. [CNA Ireland](https://cnaireland-6f6c57542d6c.he
  
 
 # 1. Business Model
+## FaceBook Page
+- [CNA Ireland Facebook Page](https://www.facebook.com/profile.php?id=61555181135854)
+
 ## Value Proposition
 - Quality CBD Products: Offer a curated selection of high-quality CBD products, ensuring potency and safety.
 - Convenience: Provide easy access to Cbd products through an intuitive and secure e-commerce platform.
