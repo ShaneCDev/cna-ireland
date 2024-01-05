@@ -61,6 +61,7 @@ def all_products(request):
 
 def product_detail(request, slug):
     """Detailed view of the product"""
+    print(request.path)
     product = get_object_or_404(Product, slug=slug)
     all_reviews = ProductReview.objects.filter(product=product)
     paginator = Paginator(all_reviews, 3)

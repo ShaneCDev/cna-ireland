@@ -37,5 +37,6 @@ urlpatterns = [
     path('why/', include('why.urls')),
     path('contact/', include('contact.urls')),
     path('newsletter/', include('newsletter.urls')),
+    path('wishlist/', include('wishlist.urls')),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

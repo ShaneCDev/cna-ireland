@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'newsletter',
     'django_recaptcha',
     'error',
+    'wishlist',
 
     'crispy_forms',
     'crispy_bootstrap5',
@@ -118,7 +119,7 @@ SITE_ID = 1
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 8
 LOGIN_URL = '/accounts/login/'
